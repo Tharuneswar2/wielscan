@@ -1,0 +1,77 @@
+{
+  "project": {
+    "name": "WiFi Password Recovery Tool",
+    "version": "2.0.0",
+    "description": "A multi-platform tool for recovering forgotten WiFi passwords with GPU acceleration"
+  },
+  "defaults": {
+    "interface": "wlan0",
+    "wordlist": "wordlists/rockyou.txt",
+    "output_dir": "captures",
+    "log_dir": "logs"
+  },
+  "gpu": {
+    "enabled": true,
+    "mode": "parallel",
+    "max_workers": 4,
+    "workload_profile": 3,
+    "auto_detect": true,
+    "preferred_vendor": "auto",
+    "memory_limit_mb": 0
+  },
+  "methods": {
+    "wpa": {
+      "name": "WPA Handshake Capture & Crack",
+      "platforms": ["linux", "darwin", "wsl", "windows"],
+      "dependencies": ["aircrack-ng", "hashcat"],
+      "hashcat_mode": 22000,
+      "hashcat_attack": 0,
+      "gpu_accelerated": true
+    },
+    "windows": {
+      "name": "Windows Saved Profile Extraction",
+      "platforms": ["windows"],
+      "dependencies": ["netsh"],
+      "requires_admin": false
+    },
+    "macos": {
+      "name": "macOS Keychain Extraction",
+      "platforms": ["darwin"],
+      "dependencies": ["security"],
+      "requires_keychain_access": true
+    }
+  },
+  "wordlists": {
+    "recommended": [
+      "rockyou.txt",
+      "SecLists/Passwords/Leaked-Databases/rockyou.txt",
+      "SecLists/Passwords/Common-Credentials/10k-most-common.txt"
+    ],
+    "download_urls": {
+      "rockyou": "https://github.com/danielmiessler/SecLists/raw/master/Passwords/Leaked-Databases/rockyou.txt.tar.gz",
+      "common": "https://github.com/danielmiessler/SecLists/raw/master/Passwords/Common-Credentials/10k-most-common.txt"
+    },
+    "optimization": {
+      "max_ram_mb": 500,
+      "deduplicate": true,
+      "sort": true
+    }
+  },
+  "advanced": {
+    "rules": {
+      "enabled": true,
+      "default_rules": ["best64.rule", "d3ad0ne.rule"],
+      "custom_rules_dir": "rules/"
+    },
+    "patterns": {
+      "min_length": 8,
+      "max_length": 16,
+      "include_special": true
+    }
+  },
+  "logging": {
+    "enabled": true,
+    "level": "INFO",
+    "file": "logs/wifi_cracker.log"
+  }
+}

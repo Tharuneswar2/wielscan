@@ -1,0 +1,41 @@
+# WiFi Password Recovery Tool - Python Dependencies
+# =================================================
+
+# Core dependencies (usually included with Python)
+# subprocess - built-in
+# sys - built-in
+# os - built-in
+# re - built-in
+# platform - built-in
+# argparse - built-in
+# json - built-in
+# pathlib - built-in
+# datetime - built-in
+# multiprocessing - built-in
+
+# Optional dependencies for enhanced functionality
+# Uncomment if needed:
+
+# For better terminal output
+colorama>=0.4.4
+
+# For progress bars
+tqdm>=4.62.0
+
+# For JSON handling (faster than built-in json)
+orjson>=3.6.0
+
+# For system monitoring
+psutil>=5.8.0
+
+# For network scanning (optional)
+# scapy>=2.4.5
+
+# For WiFi scanning on Linux
+# pyric>=0.1.6.6
+
+# For advanced pattern generation
+# John the Ripper is external - install separately
+
+# For website crawling (wordlist generation)
+# cewl is external - install via: gem install cewl
